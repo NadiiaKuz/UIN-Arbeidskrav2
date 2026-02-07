@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import './style/handleliste.css'
 import AddForm from './components/AddForm'
-import ShoppingItem from './components/ShoppingItem'
+import ShoppingList from './components/ShoppingList'
 
 function App() {
   const startItems = [
