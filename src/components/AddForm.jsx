@@ -22,7 +22,7 @@ export default function AddForm() {
                 name="amount"
                 type="number"
                 min="1"
-                step={1}
+                step="1"
                 value={amountInput}
                 onChange={(e) => setAmountInput(e.target.value)}
                 placeholder="2"
