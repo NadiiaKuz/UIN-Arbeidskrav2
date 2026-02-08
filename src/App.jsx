@@ -20,6 +20,15 @@ function App() {
     setItems((prev) => prev.map((item) => (item.prodId === prodId ? {...item, amount} : item)))
   }
 
+  const handleAddItem = (name, amount) => {
+    const newItem = {
+      prodId: crypto.randomUUID(),
+      name,
+      amount,
+      bought: false
+    }
+    setItems((prev) => [newItem, ...prev])
+  }
 
   return (
     <main>
@@ -28,7 +37,7 @@ function App() {
           <h1>Handleliste</h1>
         </header>
 
-        <AddForm />
+        <AddForm handleAddItem={handleAddItem}/>
         <ShoppingList items={items} handleToggle={handleToggle} onAmountChange={handleAmountChange}/>
       
       </section> 

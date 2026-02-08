@@ -1,11 +1,21 @@
 import { useState } from "react"
 
-export default function AddForm() {
-    const [nameInput, setNameInput] = useState("")
-    const [amountInput, setAmountInput] = useState("")
+export default function AddForm({handleAddItem}) {
+    const [nameInput, setNameInput] = useState('')
+    const [amountInput, setAmountInput] = useState('')
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const name = nameInput
+        const amountNumber = Number(amountInput)
+
+        handleAddItem(name, amountNumber)
+        setNameInput('')
+        setAmountInput('')
+    }
 
     return (
-        <form className="addForm">
+        <form className="addForm" onSubmit={handleSubmit}>
             <label htmlFor="item-name">Vare</label>
             <input 
                 id="item-name"
