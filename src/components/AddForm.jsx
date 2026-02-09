@@ -4,14 +4,32 @@ export default function AddForm({handleAddItem}) {
     const [nameInput, setNameInput] = useState('')
     const [amountInput, setAmountInput] = useState('')
 
+    const [error, setError] = useState('')
+
     const handleSubmit = (e) => {
         e.preventDefault()
         const name = nameInput
         const amountNumber = Number(amountInput)
 
+        if (!name && !amountInput) {
+            setError("Skriv inn vare og antall")
+            return
+        }
+
+        if (!name) {
+            setError("Skriv inn vare")
+            return
+        }
+
+        if (!amountInput || Number.isNaN(amountNumber)) {
+            setError("Skriv inn antall")
+            return
+        }
+
         handleAddItem(name, amountNumber)
         setNameInput('')
         setAmountInput('')
+        setError("")
     }
 
     return (
@@ -39,6 +57,8 @@ export default function AddForm({handleAddItem}) {
             />
 
             <button type="submit">Legg til vare</button>
+
+            {error ? (<p className="error" role="alert">{error}</p>) : null}
 
         </form>
     )
